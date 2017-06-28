@@ -1,0 +1,27 @@
+<div class="modal-dialog modal-lg">
+    <div class="modal-content" ng-controller="ProfileSettingsController">
+        <div class="modal-header">
+            <h5 class="modal-title">Пользовательские настройки</h5>
+            <button class="close" data-dismiss="modal">
+                <span><i class="pe-7s-close"></i></span>
+            </button>
+        </div><!-- ./ modal-header -->
+        <div class="modal-body">
+            <p>Используя сложные пароли при регистрации нового пользователя - запишите его отдельно, все пароли захешированны и хранятся в базе, в будущем получить к ним доступ будет невозможно.</p>
+            <p>Вы можете изменить пароль, но не можете изменить свой логин, это может сделать главный администратор сервера.</p>
+            <form autocomplete="off" ng-submit="updateProfile()">
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-value="username" disabled>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" ng-model="old_password" placeholder="Старый пароль" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" ng-model="new_password" placeholder="Новый пароль" required>
+                </div>
+                <button class="btn cancel-button" data-dismiss="modal">Отмена</button>
+                <button type="submit" class="btn save-button">Обновить</button>
+            </form>
+        </div><!-- ./ modal-body -->
+    </div>
+</div>

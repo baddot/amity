@@ -1,0 +1,17 @@
+button.add-transaction {
+    font-weight: 300;
+    padding: 8px 25px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 2px solid #f1f1f3;
+    color: #2a2f3f;
+    margin-left: 10px;
+}
+button.add-transaction:hover {
+    border: 2px solid #2a2f3f;
+}
+table tbody td i {
+    color: #25c979;
+    font-size: 45px;
+    cursor: pointer;
+}

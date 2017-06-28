@@ -1,0 +1,34 @@
+button.add-partner, button.delete-partner {
+    font-weight: 300;
+    padding: 8px 25px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 2px solid #f1f1f3;
+    color: #2a2f3f;
+    margin-left: 10px;
+}
+button.add-partner:hover, button.delete-partner:hover {
+    border: 2px solid #2a2f3f;
+}
+.partner-handlers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.partner-handlers > .btn {
+    margin-left: 10px;
+}
+td {
+    padding:10px;
+    border:solid 1px #eee;
+}
+input {
+    border:solid 1px #ccc;
+    border-radius: 5px;
+    padding:7px 14px;
+}
+input:focus {
+    outline:none;
+    border-color:#aaa;
+}

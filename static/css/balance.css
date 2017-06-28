@@ -1,0 +1,18 @@
+.balance {
+
+}
+.balance .col-md-6 {
+    min-height: 100%;
+}
+.balance .col-md-6:first-child {
+    border-right: 1px solid #eee;
+}
+.balance .card {
+    margin-bottom: 20px;
+}
+h1.balance-title {
+    margin-left: 15px;
+}
+h1.balance-title i {
+    margin-right: 10px;
+}

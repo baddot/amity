@@ -1,0 +1,209 @@
+:root {
+    --main-color: #F62459;
+    --hover-color: #A1193F;
+}
+* {
+    padding: 0;
+    margin: 0;
+}
+a, a:visited, a:focus {
+    text-decoration: none;
+}
+body, html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    font-family: "PT Sans", sans-serif!important;
+}
+.btn, input.form-control, select.form-control, .modal-title {
+    font-family: "PT Sans", sans-serif!important;
+}
+.btn {
+    cursor: pointer;
+}
+.loader {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #262d3b;
+}
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    //display: flex;
+    display: none;
+}
+.sidebar {
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    height: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #222936;
+}
+.sidebar li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 60px;
+    width: 60px;
+    color: #5b636c;
+    position: relative;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    -webkit-transition: color 0.5s ease-in-out;
+    -moz-transition: color 0.5s ease-in-out;
+    transition: color 0.5s ease-in-out;
+}
+.sidebar li:first-child {
+    background-color: #1a1f28;
+}
+.sidebar li:first-child a {
+    color: var(--main-color);
+}
+.sidebar li a i {
+    font-size: 35px;
+}
+.sidebar li:hover a, .sidebar li:visited a {
+    color: #fff;
+    text-decoration: none;
+}
+.top-panel {
+    width: calc(100% - 60px);
+    height: 60px;
+    background-color: #fff;
+    left: 60px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #e9e9eb;
+}
+.top-panel h4 {
+    margin-left: 15px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+@media all and (max-width: 960px) {
+    .top-panel h4 {
+        display: none;
+    }
+}
+.top-panel .user {
+    position: absolute;
+    right: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+@media all and (max-width: 640px) {
+    .top-panel .user span {
+        display: none;
+    }
+}
+.top-panel .user > * {
+    margin: 0 10px;
+    cursor: pointer;
+}
+.top-panel .user i {
+    font-size: 40px;
+    color: var(--main-color);
+    transition: all .1s ease-in;
+}
+.top-panel .user i:hover {
+    font-size: 50px;
+}
+.top-panel .login-button, .top-panel .register-button, .top-panel .logout-button {
+    background-color: transparent;
+    border-color: var(--main-color);
+}
+.top-panel .login-button:hover, .top-panel .register-button:hover, .top-panel .logout-button:hover {
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+    color: #fff;
+}
+button.close span {
+    font-size: 1.1em;
+}
+.main {
+    position: absolute;
+    width: calc(100% - 60px);
+    height: 100%;
+    top: 60px;
+    left: 60px;
+    background-color: #fff;
+}
+.main .container-fluid {
+    padding: 30px;
+}
+/** USER **/
+.main .item {
+    max-width: 30%;
+    margin: 20px;
+    border: 1px solid #e9e9eb;
+    border-radius: 5px;
+    text-align: center;
+    padding: 20px;
+}
+.main .item i {
+    font-size: 45px;
+}
+.main .item h2 {
+    font-size: 24px;
+}
+.main .item a {
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+    font-weight: 300;
+    padding: 8px 25px;
+    border-radius: 5px;
+    color: #fff;
+}
+.main .item a:hover {
+    background-color: var(--hover-color);
+    border-color: var(--hover-color);
+}
+/** USER POSTS **/
+table th, table td {
+    border-top: 0!important;
+    color: #323a4e;
+    vertical-align: middle!important;
+}
+table thead th {
+    cursor: pointer;
+}
+.table i {
+    font-size: 34px;
+    cursor: pointer;
+}
+/** USER MODAL **/
+.cancel-button, .save-button {
+    font-weight: 300;
+    padding: 8px 25px;
+    border-radius: 15px;
+    color: #fff;
+}
+.cancel-button {
+    background-color: transparent;
+    border: 2px solid #f1f1f3 !important;
+    color: #2a2f3f !important;
+}
+.cancel-button:hover {
+    border: 2px solid #2a2f3f !important;
+}
+.save-button {
+    background-color: #25c979;
+    border-color: #25c979;
+    color: #fff;
+}
+.modal .form-group input:focus, .modal .form-group input:hover, .modal .form-group select:active, .modal .form-group select:hover {
+    border-color: #25c979;
+}
