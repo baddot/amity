@@ -1,6 +1,6 @@
 {
     "name": "firegular",
-    "version": "0.1",
+    "version": "0.2",
     "author": "vk.com/overthesanity",
     "scripts": {
         "build": "gulp build",
