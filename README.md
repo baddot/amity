@@ -1,4 +1,4 @@
-<h1 align="center"><img src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/445/175806445_e0775c37-03e4-43b1-94f7-01bc512516b5.png?cb=1499187137"></h1>
+<h1 align="center"><img src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/876/175809876_421b1a09-79df-4a73-9ef5-9f95f2868e48.png?cb=1499187316"></h1>
 <p><strong>Firegular</strong> это мини-CRM для малого бизнеса. <strong>Функционал:</strong> база контрагентов, контроль внутренних доходов и расходов.</p>
 <p>Система написана на PHP, на клиенте Angular, что упрощает работу с динамическими данными. В будущем планируется интеграция нескольких модулей, а имеенно:</p>
 
