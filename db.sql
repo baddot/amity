@@ -125,3 +125,21 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`) VALUES
 	(1, 'test', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3');
+
+CREATE TABLE IF NOT EXISTS `marks` (
+    mark_name VARCHAR(255) NOT NULL,
+    lat FLOAT NOT NULL,
+    lng FLOAT NOT NULL
+);
+
+INSERT INTO `marks` VALUES ('ЧП "Жилстрой"', 50.0228279, 36.3067721), ('Золотой Век', 49.9820645, 36.2460488);
+
+CREATE TABLE IF NOT EXISTS `events` (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    event_name VARCHAR(255) NOT NULL,
+    event_time VARCHAR(255) NOT NULL,
+    lat FLOAT NOT NULL,
+    lng FLOAT NOT NULL
+);
+
+INSERT INTO `events` VALUES (NULL, 'Конференция', '12:00 02.07.2017', 49.979708538333874, 36.261491775512695);
