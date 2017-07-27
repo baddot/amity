@@ -1,5 +1,5 @@
 <h1 align="center"><img src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/784/204381784_634e7c90-41da-4db4-b68e-f2908569e2e1.png"></h1>
-<p><strong>Amity</strong> это мини-CRM для малого бизнеса. <strong>Функционал:</strong> база контрагентов, контроль внутренних доходов и расходов.</p>
+<p><strong>Amity</strong>- это мини-CRM для малого бизнеса. <strong>Функционал:</strong> база контрагентов, контроль внутренних доходов и расходов, есть возможность устанавливать сегодняший курс, сохраняется в localStorage.</p>
 <p>Система написана на PHP, на клиенте Angular, что упрощает работу с динамическими данными. В будущем планируется интеграция нескольких модулей, а именно:</p>
 
 * модуль карт Google (карты, участки карт, метки, геокодирование адресов) :heavy_check_mark:
@@ -10,18 +10,14 @@
 <strong>Форма входа в CRM</strong>	
 <img src="https://github.com/arturovt/firegular/blob/master/screens/login.png">
 <strong>Главная страница</strong>
-<img src="https://github.com/arturovt/firegular/blob/master/screens/main.jpg">
-<strong>Возможность устанавливать сегодняший курс, сохраняется в localStorage</strong>
-<img src="https://github.com/arturovt/firegular/blob/master/screens/change-currency.jpg">
-<strong>Партнеры / контрагенты</strong>
-<img src="https://github.com/arturovt/firegular/blob/master/screens/partners.jpg">
+<img src="https://github.com/arturovt/firegular/blob/master/screens/main.png">
 <strong>Форма добавления нового партнера</strong>
-<img src="https://github.com/arturovt/firegular/blob/master/screens/add-partner.jpg">
+<img src="https://github.com/arturovt/firegular/blob/master/screens/add-partner.png">
 <strong>Доходы</strong>
-<img src="https://github.com/arturovt/firegular/blob/master/screens/incomes.jpg">
+<img src="https://github.com/arturovt/firegular/blob/master/screens/incomes.png">
 <strong>Форма добавления дохода. Указывается форма оплаты, после этого "Баланс" компании обновляется.</strong>
-<img src="https://github.com/arturovt/firegular/blob/master/screens/add-income.jpg">
-<strong>Расходы</strong>
-<img src="https://github.com/arturovt/firegular/blob/master/screens/expenses.jpg">
-<strong>Справочник категорий</strong>
-<img src="https://github.com/arturovt/firegular/blob/master/screens/theasaurus.jpg">
+<img src="https://github.com/arturovt/firegular/blob/master/screens/add-income.png">
+<strong>Гео-модуль</strong>
+<img src="https://github.com/arturovt/firegular/blob/master/screens/geo.png">
+<strong>Форма добавления нового события</strong>
+<img src="https://github.com/arturovt/firegular/blob/master/screens/add-event.png">
