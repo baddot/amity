@@ -1,13 +1,13 @@
 :root {
-    --main-color: #F62459;
+    --main-color: #fe0070;
     --hover-color: #A1193F;
 }
 * {
     padding: 0;
     margin: 0;
 }
-a, a:visited, a:focus {
-    text-decoration: none;
+a, a:visited, a:focus, a:active {
+    text-decoration: none !important;
 }
 body, html {
     width: 100%;
@@ -34,7 +34,6 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-    //display: flex;
     display: none;
 }
 .sidebar {
@@ -184,8 +183,22 @@ table thead th {
     font-size: 34px;
     cursor: pointer;
 }
+/** ADD BUTTON **/
+button.add {
+    font-weight: 300;
+    padding: 8px 25px;
+    border-radius: 5px;
+    background-color: #1db66d;
+    border: 2px solid #1db66d;
+    color: #fff;
+    margin-left: 10px;
+}
+button.add:hover {
+    border: 2px solid #199d5e;
+    background-color: #199d5e;
+}
 /** USER MODAL **/
-.cancel-button, .save-button {
+.cancel-button {
     font-weight: 300;
     padding: 8px 25px;
     border-radius: 15px;
@@ -199,11 +212,29 @@ table thead th {
 .cancel-button:hover {
     border: 2px solid #2a2f3f !important;
 }
-.save-button {
-    background-color: #25c979;
-    border-color: #25c979;
-    color: #fff;
-}
 .modal .form-group input:focus, .modal .form-group input:hover, .modal .form-group select:active, .modal .form-group select:hover {
-    border-color: #25c979;
+    border-color: #1db66d !important;
+}
+/** EVENTS **/
+.event {
+    display: inline-flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    border: 2px solid black;
+}
+.event:not(:first-child) {
+    margin-left: 20px;
+}
+.event-modal .modal-body {
+    height: 300px;
+}
+.add-event-modal .map {
+    padding: 150px 0;
+}
+img, embed, object, video {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
 }
