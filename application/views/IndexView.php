@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="no-cache">
-    <title>firegular</title>
+    <title>Amity</title>
     <link rel="icon" href="/favicon.ico">
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -44,7 +44,7 @@
     <section class="login">
         <form autocomplete="off">
             <div class="form-group">
-                <h4>firegular <i class="ion-ios-flame-outline"></i></h4>
+                <h4>Amity <i class="ion-ios-shuffle-strong"></i></h4>
             </div>
             <div class="form-group">
                 <input type="text" name="username" placeholder="Имя пользователя" class="form-control" required>
