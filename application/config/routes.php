@@ -48,5 +48,15 @@ $route["user/add-subcategory"] = "UserController/addSubcategory";
 $route["user/delete-category"] = "UserController/deleteCategory";
 $route["user/delete-subcategory"] = "UserController/deleteSubcategory";
 
+// Map
+$route["user/map"] = "UserController/showMapPage";
+$route["user/get-marks"] = "UserController/getMarks";
+
+// Events
+$route["user/events"] = "UserController/showEventsPage";
+$route["user/get-events"] = "UserController/getEvents";
+$route["user/add-event"] = "UserController/addEvent";
+$route["user/delete-event"] = "UserController/deleteEvent";
+
 // Auth routes [login, register, logout]
 $route["login"] = "AuthController/login";
