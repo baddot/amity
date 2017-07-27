@@ -20,7 +20,7 @@ class AdminModel extends CI_Model {
     }
 
     public function getPartners() {
-        $result = $this->db->query("SELECT partners.id, partners.name, partners.phone, partners.email, partners.agent_name, partners.agent_phone, categories.name FROM partners, categories WHERE partners.category_id=categories.id");
+        $result = $this->db->query("SELECT partners.id, partners.name AS partner_name, partners.phone, partners.email, partners.agent_name, partners.agent_phone, categories.name FROM partners, categories WHERE partners.category_id=categories.id");
         $data = array();
         foreach ($result->result_array() as $row) {
             array_push($data, $row);
@@ -73,5 +73,35 @@ class AdminModel extends CI_Model {
 
     public function deleteSubcategory($subcategory_id) {
         return $this->db->query("DELETE FROM subcategories WHERE id=$subcategory_id");
+    }
+
+    public function getMarks() {
+        $result = $this->db->query("SELECT * FROM marks");
+        $data = array();
+        foreach ($result->result_array() as $row) {
+            array_push($data, $row);
+        }
+        return $data;
+    }
+
+    public function addMark($mark_name, $lat, $lng) {
+
+    }
+
+    public function getEvents() {
+        $result = $this->db->query("SELECT * FROM events");
+        $data = array();
+        foreach ($result->result_array() as $row) {
+            array_push($data, $row);
+        }
+        return $data;
+    }
+
+    public function addEvent($event_name, $event_time, $lat, $lng) {
+        return $this->db->query("INSERT INTO events VALUES (NULL, '$event_name', '$event_time', $lat, $lng)");
+    }
+
+    public function deleteEvent() {
+
     }
 }
