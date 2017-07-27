@@ -49,78 +49,43 @@ class CashModel extends CI_Model {
                     $cash_query = $this->db->select("b_nal_pb")->from("cash")->limit(1)->get()->row();
                     $b_nal_pb = intval($cash_query->b_nal_pb);
                     $b_nal_pb += $income_sum;
-                    $update = $this->db->query("UPDATE cash SET b_nal_pb=$b_nal_pb");
-                    if ($update) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return $this->db->query("UPDATE cash SET b_nal_pb=$b_nal_pb");
                     break;
                 case 2: // QIWI
                     $cash_query = $this->db->select("b_nal_qiwi")->from("cash")->limit(1)->get()->row();
                     $b_nal_qiwi = intval($cash_query->b_nal_qiwi);
                     $b_nal_qiwi += $income_sum;
-                    $update = $this->db->query("UPDATE cash SET b_nal_qiwi=$b_nal_qiwi");
-                    if ($update) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return $this->db->query("UPDATE cash SET b_nal_qiwi=$b_nal_qiwi");
                     break;
                 case 3: // WMZ
                     $cash_query = $this->db->select("b_nal_wmz")->from("cash")->limit(1)->get()->row();
                     $b_nal_wmz = intval($cash_query->b_nal_wmz);
                     $b_nal_wmz += $income_sum;
-                    $update = $this->db->query("UPDATE cash SET b_nal_wmz=$b_nal_wmz");
-                    if ($update) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return $this->db->query("UPDATE cash SET b_nal_wmz=$b_nal_wmz");
                     break;
                 case 4: // WMR
                     $cash_query = $this->db->select("b_nal_wmr")->from("cash")->limit(1)->get()->row();
                     $b_nal_wmr = intval($cash_query->b_nal_wmr);
                     $b_nal_wmr += $income_sum;
-                    $update = $this->db->query("UPDATE cash SET b_nal_wmr=$b_nal_wmr");
-                    if ($update) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return $this->db->query("UPDATE cash SET b_nal_wmr=$b_nal_wmr");
                     break;
                 case 5: // Наличные Грн
                     $cash_query = $this->db->select("nal_uah")->from("cash")->limit(1)->get()->row();
                     $nal_uah = intval($cash_query->nal_uah);
                     $nal_uah += $income_sum;
-                    $update = $this->db->query("UPDATE cash SET nal_uah=$nal_uah");
-                    if ($update) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return $this->db->query("UPDATE cash SET nal_uah=$nal_uah");
                     break;
                 case 6: // Наличные Р
                     $cash_query = $this->db->select("nal_rub")->from("cash")->limit(1)->get()->row();
                     $nal_rub = intval($cash_query->nal_rub);
                     $nal_rub += $income_sum;
-                    $update = $this->db->query("UPDATE cash SET nal_rub=$nal_rub");
-                    if ($update) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return $this->db->query("UPDATE cash SET nal_rub=$nal_rub");
                     break;
                 case 7: // Наличные USD
                     $cash_query = $this->db->select("nal_usd")->from("cash")->limit(1)->get()->row();
                     $nal_usd = intval($cash_query->nal_usd);
                     $nal_usd += $income_sum;
-                    $update = $this->db->query("UPDATE cash SET nal_usd=$nal_usd");
-                    if ($update) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return $this->db->query("UPDATE cash SET nal_usd=$nal_usd");
                     break;
             }
         } else {
@@ -145,50 +110,43 @@ class CashModel extends CI_Model {
                     $cash_query = $this->db->select("b_nal_pb")->from("cash")->limit(1)->get()->row();
                     $b_nal_pb = intval($cash_query->b_nal_pb);
                     $b_nal_pb -= $sum;
-                    $update = $this->db->query("UPDATE cash SET b_nal_pb=$b_nal_pb");
-                    return $update ? true : false;
+                    return $this->db->query("UPDATE cash SET b_nal_pb=$b_nal_pb");
                     break;
                 case 2: // QIWI
                     $cash_query = $this->db->select("b_nal_qiwi")->from("cash")->limit(1)->get()->row();
                     $b_nal_qiwi = intval($cash_query->b_nal_qiwi);
                     $b_nal_qiwi -= $sum;
-                    $update = $this->db->query("UPDATE cash SET b_nal_qiwi=$b_nal_qiwi");
-                    return $update ? true : false;
+                    return $this->db->query("UPDATE cash SET b_nal_qiwi=$b_nal_qiwi");
                     break;
                 case 3: // WMZ
                     $cash_query = $this->db->select("b_nal_wmz")->from("cash")->limit(1)->get()->row();
                     $b_nal_wmz = intval($cash_query->b_nal_wmz);
                     $b_nal_wmz -= $sum;
-                    $update = $this->db->query("UPDATE cash SET b_nal_wmz=$b_nal_wmz");
-                    return $update ? true : false;
+                    return $this->db->query("UPDATE cash SET b_nal_wmz=$b_nal_wmz");
                     break;
                 case 4: // WMR
                     $cash_query = $this->db->select("b_nal_wmr")->from("cash")->limit(1)->get()->row();
                     $b_nal_wmr = intval($cash_query->b_nal_wmr);
                     $b_nal_wmr -= $sum;
-                    $update = $this->db->query("UPDATE cash SET b_nal_wmr=$b_nal_wmr");
-                    return $update ? true : false;
+                    return $this->db->query("UPDATE cash SET b_nal_wmr=$b_nal_wmr");
                     break;
                 case 5: // Наличные Грн
                     $cash_query = $this->db->select("nal_uah")->from("cash")->limit(1)->get()->row();
                     $nal_uah = intval($cash_query->nal_uah);
                     $nal_uah -= $sum;
-                    $update = $this->db->query("UPDATE cash SET nal_uah=$nal_uah");
-                    return $update ? true : false;
+                    return $this->db->query("UPDATE cash SET nal_uah=$nal_uah");
                     break;
                 case 6: // Наличные Р
                     $cash_query = $this->db->select("nal_rub")->from("cash")->limit(1)->get()->row();
                     $nal_rub = intval($cash_query->nal_rub);
                     $nal_rub -= $sum;
-                    $update = $this->db->query("UPDATE cash SET nal_rub=$nal_rub");
-                    return $update ? true : false;
+                    return $this->db->query("UPDATE cash SET nal_rub=$nal_rub");
                     break;
                 case 7: // Наличные USD
                     $cash_query = $this->db->select("nal_usd")->from("cash")->limit(1)->get()->row();
                     $nal_usd = intval($cash_query->nal_usd);
                     $nal_usd -= $sum;
-                    $update = $this->db->query("UPDATE cash SET nal_usd=$nal_usd");
-                    return $update ? true : false;
+                    return $this->db->query("UPDATE cash SET nal_usd=$nal_usd");
                     break;
             }
         } else {
