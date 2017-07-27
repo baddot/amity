@@ -22,10 +22,11 @@ const showSuccess = (string, delay)  => {
     }
 };
 
-const app = angular.module("Firegular", []);
+const app = angular.module("Amity", []);
 
-app.controller("FiregularController", $scope => {
-    window.document.title = "CRM | Firegular";
+app.controller("AmityController", $scope => {
+    window.document.title = "CRM | Amity";
+    $scope.title = "Amity";
 
     $scope.current_dollar = window.localStorage.getItem("dollar");
     $scope.current_ruble = window.localStorage.getItem("ruble");
@@ -54,10 +55,6 @@ app.controller("FiregularController", $scope => {
                 $(this).css("display", "flex");
             });
         }, 400);
-
-        $(() => {
-            $("[data-toggle=tooltip]").tooltip();
-        });
     };
 
     $scope.setCurrency = () => {
@@ -72,6 +69,12 @@ app.controller("FiregularController", $scope => {
                 $(".change-currency-modal").modal("hide");
                 showSuccess("Валюта установлена", 5000);
             }
+        }
+    };
+
+    $scope.clearArray = array => {
+        while(array.length) {
+            array.pop();
         }
     };
 });
@@ -128,16 +131,20 @@ app.controller("AllUsersController", ["$scope", "CRM", ($scope, CRM) => {
     };
 
     $scope.deleteUser = _user => {
-        if (_.isObject(_user)) {
-            $scope.params = {
-                id: _user.id
-            };
-            CRM.postData("/user/delete-user", $scope.params, $scope.config).then(_data => {
-                if (Boolean(_data) === true) {
-                    $scope.users.splice($scope.users.indexOf(_user), 1);
-                    showSuccess("Пользователь удален!", 5000);
-                }
-            });
+        if ($scope.users.length === 1) {
+            showError("Нельзя удалить единственного пользователя!", 4000);
+        } else {
+            if (_.isObject(_user)) {
+                $scope.params = {
+                    id: _user.id
+                };
+                CRM.postData("/user/delete-user", $scope.params, $scope.config).then(_data => {
+                    if (Boolean(_data) === true) {
+                        $scope.users.splice($scope.users.indexOf(_user), 1);
+                        showSuccess("Пользователь удален!", 4000);
+                    }
+                });
+            }
         }
     };
 }]);
@@ -380,6 +387,142 @@ app.controller("ThesaurusController", ["$scope", "CRM", ($scope, CRM) => {
     };
 }]);
 
+app.controller("MapController", ["$scope", "CRM", ($scope, CRM) => {
+    $scope.marks = [];
+    $scope.mark_lat = $scope.mark_lng = null;
+
+    $scope.initMap = () => {
+        document.body.style.overflow = "hidden";
+        $scope.lat = $scope.lng = null;
+
+        CRM.getData("http://maps.googleapis.com/maps/api/geocode/json?address=kharkov&sensor=false").then(_data => {
+            $scope.lat = _data.results[0].geometry.location.lat;
+            $scope.lng = _data.results[0].geometry.location.lng;
+            $scope.yourCity = _data.results[0].address_components[0].long_name;
+        });
+        CRM.getData("/user/get-marks").then(_data => {
+            $scope.marks = _data;
+
+            $scope.lat = 49.9935;
+            $scope.lng = 36.25272;
+            $scope.LatLng = new google.maps.LatLng($scope.lat, $scope.lng);
+            $scope.options = {
+                center: $scope.LatLng,
+                zoom: 14,
+                scrollWheel: true,
+                draggable: true,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            $scope.map = new google.maps.Map(document.querySelector(".map"), $scope.options);
+
+            angular.forEach($scope.marks, mark => {
+                let marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(mark.lat, mark.lng),
+                    map: $scope.map
+                });
+
+                let infoWindow = new google.maps.InfoWindow({
+                    content: mark.mark_name
+                });
+
+                google.maps.event.addListener(marker, "click", ((marker, content, infoWindow) => {
+                    return () => {
+                        infoWindow.setContent(content);
+                        infoWindow.open($scope.map, marker);
+                    };
+                })(marker, mark.mark_name, infoWindow));
+            });
+
+            $scope.map.addListener("dblclick", e => {
+                $scope.mark_lat = e.latLng.lat();
+                $scope.mark_lng = e.latLng.lng();
+
+                let marker = new google.maps.Marker({
+                    position: e.latLng,
+                    map: $scope.map
+                });
+
+                let infoWindow = new google.maps.InfoWindow();
+                let content = "Чтобы сохранить метку - нажмите добавить метку и укажите название!";
+
+                google.maps.event.addListener(marker, "click", ((marker, content, infoWindow) => {
+                    return () => {
+                        infoWindow.setContent(content);
+                        infoWindow.open($scope.map, marker);
+                    };
+                })(marker, content, infoWindow));
+            });
+        });
+    };
+}]);
+
+app.controller("EventsController", ["$scope", "CRM", ($scope, CRM) => {
+    $scope.events = [];
+
+    CRM.getData("/user/get-events").then(_data => {
+        _.isEmpty($scope.events) ? $scope.events = _data : null;
+    });
+
+    $scope.openEvent = _event => {
+        $scope.event = _event.event_name.concat(" ", _event.event_time);
+        $scope.LatLng = new google.maps.LatLng(parseFloat(_event.lat), parseFloat(_event.lng));
+        $scope.options = {
+            center: $scope.LatLng,
+            zoom: 12,
+            scrollWheel: true,
+            draggable: true,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        $scope.map = new google.maps.Map(document.querySelector(".event-modal .modal-body"), $scope.options);
+        new google.maps.Marker({
+            position: $scope.LatLng,
+            map: $scope.map
+        });
+        $(".event-modal").modal("show");
+    };
+
+    $scope.lat = 49.9935;
+    $scope.lng = 36.25272;
+    $scope.options = {
+        center: new google.maps.LatLng($scope.lat, $scope.lng),
+        zoom: 14,
+        scrollWheel: true,
+        draggable: true,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    $scope.map = new google.maps.Map(document.querySelector(".add-event-modal .map"), $scope.options);
+    $scope.map.addListener("dblclick", e => {
+        $scope.mark_lat = e.latLng.lat();
+        $scope.mark_lng = e.latLng.lng();
+
+        new google.maps.Marker({
+            position: new google.maps.LatLng($scope.mark_lat, $scope.mark_lng),
+            map: $scope.map
+        });
+    });
+
+    $scope.addEvent = () => {
+        $scope.params = {
+            event_name: $scope.event_name,
+            event_time: $scope.event_time,
+            lat: $scope.mark_lat,
+            lng: $scope.mark_lng
+        };
+        CRM.postData("/user/add-event", $scope.params, $scope.config).then(_data => {
+            if (Boolean(_data) === true) {
+                $(".add-event-modal").modal("hide");
+                $scope.clearArray($scope.events);
+                CRM.getData("/user/get-events").then(_data => {
+                    _.isEmpty($scope.events) ? $scope.events = _data : null;
+                });
+            } else {
+                $(".add-event-modal").modal("hide");
+                showError("Серверная ошибка!", 5000);
+            }
+        });
+    };
+}]);
+
 app.controller("LogoutController", ["$scope", "CRM", ($scope, CRM) => {
     $scope.logout = () => {
         CRM.postData("/user/logout", null, $scope.config).then(_data => {
@@ -389,3 +532,4 @@ app.controller("LogoutController", ["$scope", "CRM", ($scope, CRM) => {
 }]);
 
 document.addEventListener("DOMContentLoaded", () => defineDependencies([angular, moment, _, Notyf]));
+window.addEventListener("load", () => $("body").tooltip({ selector: "[data-toggle=tooltip]" }));
