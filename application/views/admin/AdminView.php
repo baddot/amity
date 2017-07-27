@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru" ng-app="Firegular" ng-controller="FiregularController">
+<html lang="ru" ng-app="Amity" ng-controller="AmityController">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="no-cache">
@@ -16,7 +16,7 @@
     <div class="wrapper">
         <ul class="sidebar" ng-include="_templates.sidebar"></ul><!-- ./ sidebar -->
         <div class="top-panel">
-            <h4>Firegular</h4>
+            <h4>{{title}}</h4>
             <div class="user">
                 <h5>Валюты [USD: {{current_dollar == "undefined" ? "Не задано" : current_dollar}} | RUB: {{current_ruble == "undefined" ? "Не задано" : current_ruble}} ]</h5>
                 <i class="pe-7s-like" data-toggle="modal" data-target=".profile-settings-modal"></i>
@@ -58,10 +58,16 @@
                         <a href="/user/expenses" class="btn btn-secondary">Перейти</a>
                     </div>
                     <div class="col-md-4 item">
-                        <i class="pe-7s-graph2"></i>
-                        <h2>Статистика</h2>
-                        <p>Все графики и изменения за определенный промежуток</p>
-                        <a href="/user/statistics" class="btn btn-secondary">Перейти</a>
+                        <i class="pe-7s-map"></i>
+                        <h2>Геокодирование</h2>
+                        <p>Карты, участки карт, метки</p>
+                        <a href="/user/map" class="btn btn-secondary">Перейти</a>
+                    </div>
+                    <div class="col-md-4 item">
+                        <i class="pe-7s-timer"></i>
+                        <h2>События</h2>
+                        <p>Указание мест проведения события, назначение участников, отправка именных приглашений участникам</p>
+                        <a href="/user/events" class="btn btn-secondary">Перейти</a>
                     </div>
                 </div>
             </div>
@@ -72,7 +78,7 @@
     <!-- ./ add user modal -->
     <!-- profile settings modal -->
     <div class="modal fade profile-settings-modal" ng-include="_templates.profileSettingsModal"></div>
-    <!-- ./ profile settings model -->
+    <!-- ./ profile settings modal -->
     <!-- change currency modal -->
     <div class="modal fade change-currency-modal">
         <div class="modal-dialog modal-lg">
@@ -99,13 +105,7 @@
         </div>
     </div>
     <!-- ./ change currency modal -->
-    <script src="/static/js/libs/angular.min.js"></script>
-    <script src="/static/js/libs/jquery.min.js"></script>
-    <script src="/static/js/libs/tether.min.js"></script>
-    <script src="/static/js/libs/bootstrap.min.js"></script>
-    <script src="/static/js/libs/notyf.min.js"></script>
-    <script src="/static/js/libs/underscore.min.js"></script>
-    <script src="/static/js/libs/moment.min.js"></script>
+    <script src="/static/js/bundle.min.js"></script>
     <script src="/static/js/modules/admin.js"></script>
 </body>
 </html>
