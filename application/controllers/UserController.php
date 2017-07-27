@@ -4,7 +4,7 @@
  * @property mixed AdminModel
  */
 class UserController extends CI_Controller {
-    function __construct() {
+    public function __construct() {
         parent::__construct();
         $this->load->model("AuthModel");
         $this->load->model("AdminModel");
@@ -153,6 +153,57 @@ class UserController extends CI_Controller {
             $req = json_decode(file_get_contents("php://input"));
             $subcategory_id = intval($req->subcategory_id);
             echo json_encode($this->AdminModel->deleteSubcategory($subcategory_id));
+        }
+    }
+
+    public function showMapPage() {
+        if ($this->input->server("REQUEST_METHOD") == "GET") {
+            $this->load->view("admin/MapView");
+        }
+    }
+
+    public function getMarks() {
+        if ($this->input->server("REQUEST_METHOD") == "GET") {
+            echo json_encode($this->AdminModel->getMarks());
+        }
+    }
+
+    public function addMark() {
+        if ($this->input->server("REQUEST_METHOD") == "POST") {
+            $req = json_decode(file_get_contents("php://input"));
+            $mark_name = trim($req->mark_name);
+            $lat = floatval($req->lat);
+            $lng = floatval($req->lng);
+            echo json_decode($this->AdminModel->addMark($mark_name, $lat, $lng));
+        }
+    }
+
+    public function showEventsPage() {
+        if ($this->input->server("REQUEST_METHOD") == "GET") {
+            $this->load->view("admin/EventsView");
+        }
+    }
+
+    public function getEvents() {
+        if ($this->input->server("REQUEST_METHOD") == "GET") {
+            echo json_encode($this->AdminModel->getEvents());
+        }
+    }
+
+    public function addEvent() {
+        if ($this->input->server("REQUEST_METHOD") == "POST") {
+            $req = json_decode(file_get_contents("php://input"));
+            $event_name = trim($req->event_name);
+            $event_time = trim($req->event_time);
+            $lat = floatval($req->lat);
+            $lng = floatval($req->lng);
+            echo json_encode($this->AdminModel->addEvent($event_name, $event_time, $lat, $lng));
+        }
+    }
+
+    public function deleteEvent() {
+        if ($this->input->server("REQUEST_METHOD") == "POST") {
+
         }
     }
 }
