@@ -43,15 +43,15 @@ app.controller("AmityController", $scope => {
         profileSettingsModal: "/templates/profile-settings-modal.html"
     };
 
-    $scope.initSystem = function() {
-        setTimeout(function() {
-            $(".loader").fadeOut(function() {
+    $scope.initSystem = () => {
+        setTimeout(() => {
+            $(".loader").fadeOut(() => {
                 $(this).css("display", "none");
             });
         }, 300);
 
-        setTimeout(function() {
-            $(".wrapper").fadeIn(function() {
+        setTimeout(() => {
+            $(".wrapper").fadeIn(() => {
                 $(this).css("display", "flex");
             });
         }, 400);
@@ -67,13 +67,12 @@ app.controller("AmityController", $scope => {
 
             if (!_.isEmpty(window.localStorage.getItem("dollar")) && !_.isEmpty(window.localStorage.getItem("ruble"))) {
                 $(".change-currency-modal").modal("hide");
-                showSuccess("Валюта установлена", 5000);
             }
         }
     };
 
     $scope.clearArray = array => {
-        while(array.length) {
+        while (array.length) {
             array.pop();
         }
     };
@@ -82,7 +81,7 @@ app.controller("AmityController", $scope => {
 app.factory("CRM", ["$http", "$q", ($http, $q) => {
     const getData = url => {
         const defer = $q.defer();
-        $http.get(url).then(function success(_res) {
+        $http.get(url).then(_res => {
             defer.resolve(_res.data);
         });
         return defer.promise;
@@ -90,7 +89,7 @@ app.factory("CRM", ["$http", "$q", ($http, $q) => {
 
     const postData = (url, params, config) => {
         const defer = $q.defer();
-        $http.post(url, params, config).then(function success(_res) {
+        $http.post(url, params, config).then(_res => {
             defer.resolve(_res.data);
         });
         return defer.promise;
@@ -201,6 +200,7 @@ app.controller("ExpensesController", ["$scope", "CRM", ($scope, CRM) => {
             expense_date: $scope.expense_date,
             subcategory_id: $scope.subcategory_id
         };
+        
         CRM.postData("/user/add-expense", $scope.params, $scope.config).then(_data => {
             if (Boolean(_data) === true) {
                 $(".add-expense-modal").modal("hide");
@@ -247,6 +247,7 @@ app.controller("IncomesController", ["$scope", "CRM", ($scope, CRM) => {
             income_date: $scope.income_date,
             partner_id: $scope.partner_id
         };
+        
         CRM.postData("/user/add-income", $scope.params, $scope.config).then(_data => {
             if (Boolean(_data) === true) {
                 $(".add-income-modal").modal("hide");
@@ -279,6 +280,7 @@ app.controller("PartnerController", ["$scope", "CRM", ($scope, CRM) => {
             agent_name: $scope.agent_name,
             agent_phone: $scope.agent_phone
         };
+        
         CRM.postData("/user/add-partner", "partner_name=" + $scope.params, $scope.config).then(_data => {
             if (Boolean(_data) === true) {
                 $(".add-partner-modal").modal("hide");
@@ -292,6 +294,7 @@ app.controller("PartnerController", ["$scope", "CRM", ($scope, CRM) => {
 
     $scope.deletePartner = _partner => {
         $scope.params = { partner_id: $scope.partner_id };
+        
         CRM.postData("/user/delete-partner", $scope.params, $scope.config).then(_data => {
             if (Boolean(_data) === true) {
                 $scope.partners.splice($scope.partners.indexOf(_partner), 1);
@@ -316,6 +319,7 @@ app.controller("ProfileSettingsController", ["$scope", "CRM", ($scope, CRM) => {
             old_password: $scope.old_password,
             new_password: $scope.new_password
         };
+        
         CRM.postData("/user/update-profile", $scope.params, $scope.config).then(_data => {
             Boolean(_data) === true ? showSuccess("Пароль изменен!", 5000) : showError("Ошибка сервера!", 5000);
         });
@@ -335,6 +339,7 @@ app.controller("ThesaurusController", ["$scope", "CRM", ($scope, CRM) => {
 
     $scope.addCategory = () => {
         $scope.params = { category_name: $scope.category_name };
+        
         CRM.postData("/user/add-category", $scope.params, $scope.config).then(_data => {
             if (Boolean(_data) === true) {
                 $(".add-category-modal").modal("hide");
@@ -351,6 +356,7 @@ app.controller("ThesaurusController", ["$scope", "CRM", ($scope, CRM) => {
             subcategory_name: $scope.subcategory_name,
             category_id: $scope.category_id
         };
+        
         CRM.postData("/user/add-subcategory", $scope.params, $scope.config).then(_data => {
             if (Boolean(_data) === true) {
                 $(".add-subcategory-modal").modal("hide");
@@ -364,6 +370,7 @@ app.controller("ThesaurusController", ["$scope", "CRM", ($scope, CRM) => {
 
     $scope.deleteCategory = _category => {
         $scope.params = { category_id: $scope.category_id };
+        
         CRM.postData("/user/delete-category", $scope.params, $scope.config).then(_data => {
             if (Boolean(_data) === true) {
                 $scope.categories.splice($scope.categories.indexOf(_category), 1);
@@ -376,6 +383,7 @@ app.controller("ThesaurusController", ["$scope", "CRM", ($scope, CRM) => {
 
     $scope.deleteSubcategory = _subcategory => {
         $scope.params = { subcategory_id: $scope.subcategory_id };
+        
         CRM.postData("/user/delete-subcategory", $scope.params, $scope.config).then(_data => {
             if (Boolean(_data) === true) {
                 $scope.subcategories.splice($scope.subcategories.indexOf(_subcategory), 1);
@@ -400,6 +408,7 @@ app.controller("MapController", ["$scope", "CRM", ($scope, CRM) => {
             $scope.lng = _data.results[0].geometry.location.lng;
             $scope.yourCity = _data.results[0].address_components[0].long_name;
         });
+        
         CRM.getData("/user/get-marks").then(_data => {
             $scope.marks = _data;
 
@@ -508,6 +517,7 @@ app.controller("EventsController", ["$scope", "CRM", ($scope, CRM) => {
             lat: $scope.mark_lat,
             lng: $scope.mark_lng
         };
+        
         CRM.postData("/user/add-event", $scope.params, $scope.config).then(_data => {
             if (Boolean(_data) === true) {
                 $(".add-event-modal").modal("hide");
